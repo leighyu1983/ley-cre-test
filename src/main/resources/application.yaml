@@ -1,0 +1,22 @@
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:dbtest
+    username: sa
+    password: sa
+    min-idle: 10
+    initial-size: 10
+    schema: classpath:database/schema.sql
+    data: classpath:database/data.sql
+    platform: h2
+  h2:
+    console:
+      path: /h2
+      enabled: true
+
