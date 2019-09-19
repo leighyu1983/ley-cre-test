@@ -1,6 +1,8 @@
 package com.ley.controller;
 
+import com.ley.annotation.MyPerformance;
 import com.ley.service.AccountService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,41 +13,32 @@ public class AccountController {
 
     @Autowired AccountService accountService;
 
+    @ApiOperation(value ="插入", notes ="", httpMethod = "GET")
     @RequestMapping("/insert")
+    @MyPerformance
     public int insert() {
         return accountService.insert();
     }
 
-    @RequestMapping("/insertWithXml")
-    public String insertWithXml() {
-        return "";
-    }
-
+    @ApiOperation(value ="更新", notes ="", httpMethod = "GET")
     @RequestMapping("/update")
-    public String update() {
-        return "";
+    public int update() {
+        return accountService.update();
     }
 
-    @RequestMapping("/querySimple")
-    public String querySimple() {
-        return "";
+    @ApiOperation(value ="In查询", notes ="", httpMethod = "GET")
+    @RequestMapping("/queryLikeIn")
+    public String queryLikeIn() {
+        return accountService.queryLikeIn();
     }
 
-    @RequestMapping("/queryJoin")
-    public String queryJoin() {
-        return "";
-    }
-
+    @ApiOperation(value ="分页查询", notes ="", httpMethod = "GET")
     @RequestMapping("/queryPaging")
     public String queryPaging() {
         return "";
     }
 
-    @RequestMapping("/queryIn")
-    public String queryIn() {
-        return "";
-    }
-
+    @ApiOperation(value ="删除", notes ="", httpMethod = "GET")
     @RequestMapping("/delete")
     public String delete() {
         return "";
