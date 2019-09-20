@@ -15,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * maven plugins - commit number and git commit
  * ProertySource(value="${APP_PATH}/subDir")
  * Global Exception
+ * inject with annotation and constructor(refer to example in TestController)
  *
  *
  */
