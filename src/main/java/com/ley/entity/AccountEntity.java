@@ -1,12 +1,15 @@
 package com.ley.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @Data
+@EqualsAndHashCode(exclude = "data")
+@ToString(exclude = "data")
 @AllArgsConstructor
+@NoArgsConstructor
 public class AccountEntity {
     private int id;
     private String name;
     private String address;
+    private byte[] data;
 }

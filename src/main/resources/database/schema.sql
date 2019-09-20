@@ -15,5 +15,6 @@ create table if not exists account (
     -- id int not null primary key auto_increment,
     id int not null primary key,
     name varchar(100),
-    address varchar(100)
+    address varchar(100),
+    data binary(1000),
 );

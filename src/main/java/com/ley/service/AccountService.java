@@ -1,5 +1,6 @@
 package com.ley.service;
 
+import com.github.pagehelper.PageHelper;
 import com.ley.entity.AccountEntity;
 import com.ley.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +17,18 @@ public class AccountService {
 
     public int insert() {
         AccountEntity accountEntity =
-                new AccountEntity(0, "name0", "this is address 0");
+                new AccountEntity(0, "name0", "this is address 0", null);
         int id = accountMapper.insert(accountEntity);
         return id;
     }
 
     public int update() {
         AccountEntity originalAccount =
-                new AccountEntity(100, "name100", "this is address 100");
+                new AccountEntity(100, "name100", "this is address 100", null);
         accountMapper.insert(originalAccount);
 
         AccountEntity updateEntity =
-                new AccountEntity(100, "name100update", "this is address 100 won't update field");
+                new AccountEntity(100, "name100update", "this is address 100 won't update field", null);
         return accountMapper.update(updateEntity);
     }
 
@@ -35,7 +36,7 @@ public class AccountService {
         // prepare data
         for(int i = 10; i < 13; i++) {
             AccountEntity accountEntity =
-                    new AccountEntity(i, "name" + i, "this is address " + i);
+                    new AccountEntity(i, "name" + i, "this is address " + i, null);
             accountMapper.insert(accountEntity);
         }
 
@@ -56,16 +57,35 @@ public class AccountService {
         return "check queryLikeIn result in log ";
     }
 
-    public String queryJoin() {
-        return "";
+    public String queryLikeInXml() {
+        // prepare data
+        for(int i = 20; i < 30; i++) {
+            AccountEntity accountEntity =
+                    new AccountEntity(i, "name" + i, "this is address " + i, null);
+            accountMapper.insert(accountEntity);
+        }
+
+        // test like
+        Set<String> inId = new HashSet<>();
+        inId.add("23");
+        inId.add("24");
+        inId.add("25");
+        List<AccountEntity> accountLikes = accountMapper.queryLikeInXml(inId);
+        accountLikes.forEach( x ->System.out.println(x.toString()));
+
+        return "check queryLikeIn result in log ";
     }
 
     public String queryPaging() {
-        return "";
-    }
-
-    public String queryIn() {
-        return "";
+        for(int i = 30; i < 40; i++) {
+            AccountEntity accountEntity =
+                    new AccountEntity(i, "name" + i, "this is address " + i, null);
+            accountMapper.insert(accountEntity);
+        }
+        PageHelper.startPage(2, 3);
+        List<AccountEntity> accountLikes = accountMapper.queryPaging("name");
+        accountLikes.forEach( x ->System.out.println(x.toString()));
+        return "check queryPaging result in log ";
     }
 
     public String delete() {

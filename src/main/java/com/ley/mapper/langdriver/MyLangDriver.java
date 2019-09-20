@@ -20,8 +20,11 @@ public class MyLangDriver extends XMLLanguageDriver {
 
         Matcher matcher = inPattern.matcher(script);
         if (matcher.find()) {
-            script = matcher.replaceAll("<foreach collection=\"$1\" item=\"_item\" open=\"(\" " +
-                    "separator=\",\" close=\")\" >#{_item}</foreach>");
+            script = matcher.replaceAll(
+                    "<foreach collection=\"$1\" item=\"_item\" open=\"(\" " +
+                    "separator=\",\" close=\")\" >"
+                            + "#{_item}"
+                            + "</foreach>");
         }
 
         script = "<script>" + script + "</script>";

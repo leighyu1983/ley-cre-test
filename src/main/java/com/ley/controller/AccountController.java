@@ -32,10 +32,16 @@ public class AccountController {
         return accountService.queryLikeIn();
     }
 
+    @ApiOperation(value ="In xml 查询", notes ="", httpMethod = "GET")
+    @RequestMapping("/queryLikeInXml")
+    public String queryLikeInXml() {
+        return accountService.queryLikeInXml();
+    }
+
     @ApiOperation(value ="分页查询", notes ="", httpMethod = "GET")
     @RequestMapping("/queryPaging")
     public String queryPaging() {
-        return "";
+        return accountService.queryPaging();
     }
 
     @ApiOperation(value ="删除", notes ="", httpMethod = "GET")

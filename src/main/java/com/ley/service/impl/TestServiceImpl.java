@@ -9,4 +9,9 @@ public class TestServiceImpl implements TestService {
     public String testService() {
         return "this is test service....";
     }
+
+    @Override
+    public void throwException() throws Exception {
+        throw new Exception("meant to throw exception");
+    }
 }

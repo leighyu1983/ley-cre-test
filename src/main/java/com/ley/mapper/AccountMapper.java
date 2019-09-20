@@ -1,6 +1,7 @@
 package com.ley.mapper;
 
 import com.ley.entity.AccountEntity;
+import com.ley.mapper.langdriver.MyLangDriver;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -32,8 +33,12 @@ public interface AccountMapper {
     })
     List<AccountEntity> queryLikeIn(@Param("pName") String name, @Param("pIds")Set<Integer> inId);
 
-    @Select("")
-    void queryPaging();
+    @Select("select * from account where id in (#{pIds})")
+    @Lang(MyLangDriver.class)
+    List<AccountEntity> queryLikeInXml(@Param("pIds")Set<String> inId);
+
+    @Select("select * from account where name like concat(#{pName}, '%')")
+    List<AccountEntity>  queryPaging(@Param("pName")String name);
 
     @Select("")
     void delete();
