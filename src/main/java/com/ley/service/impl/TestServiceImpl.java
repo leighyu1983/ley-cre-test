@@ -14,4 +14,9 @@ public class TestServiceImpl implements TestService {
     public void throwException() throws Exception {
         throw new Exception("meant to throw exception");
     }
+
+    @Override
+    public void print(String s) {
+        System.out.println(s);
+    }
 }
