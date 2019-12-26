@@ -14,7 +14,7 @@ public class ControllerExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public ResponseObj defaultErrorHandler(HttpServletRequest request, Exception e) throws Exception{
-        System.out.println("defaultErrorHandler");
+        System.out.println("defaultErrorHandler:" + e.toString());
         return ResponseObj.error(e);
     }
 
